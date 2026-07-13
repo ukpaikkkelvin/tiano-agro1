@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiano Agro and IT Experts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agroDark: '#1e3f20',
+                        agroLight: '#4ade80',
+                        techBlue: '#0284c7',
+                        techDark: '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .green-gradient-text {
+            background: linear-gradient(to right, #14532d, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tech-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+        /* Positioning and cropping to hide YouTube UI boundaries entirely */
+        .video-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 115vw; 
+            height: 64.68vw; 
+            min-height: 120vh;
+            min-width: 213.33vh;
+            transform: translate(-50%, -50%);
+        }
+        .video-slide {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .video-slide.active {
+            opacity: 0.35;
+        }
+
+        /* SVG Custom Animation Keyframes */
+        @keyframes sproutGrow {
+            0%, 100% { transform: scale(0.92) translateY(1px); }
+            50% { transform: scale(1.05) translateY(-1px); }
+        }
+        @keyframes radarPulse {
+            0% { r: 6px; opacity: 0.8; }
+            100% { r: 22px; opacity: 0; }
+        }
+        @keyframes shieldGlow {
+            0%, 100% { opacity: 0.4; transform: scale(0.96); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+        @keyframes binaryStream {
+            0% { stroke-dashoffset: 40; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .animate-sprout { animation: sproutGrow 4s ease-in-out infinite; transform-origin: center bottom; }
+        .animate-radar { animation: radarPulse 2.5s cubic-bezier(0.24, 0, 0.38, 1) infinite; }
+        .animate-shield { animation: shieldGlow 3s ease-in-out infinite; transform-origin: center; }
+        .animate-binary { stroke-dasharray: 8 4; animation: binaryStream 2s linear infinite; }
+
+        /* Smooth CSS indicator accent */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #22c55e;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active-nav {
+            color: #16a34a !important;
+            font-weight: 600;
+        }
+        .nav-link.active-nav::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 scroll-smooth">
+
+<div class="fixed top-4 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none">
+    <header id="floating-nav" class="max-w-4xl mx-auto h-16 bg-slate-800/80 backdrop-blur-md border border-slate-700/60 rounded-full shadow-lg pointer-events-auto flex items-center justify-between px-6 text-white transition-all duration-300">
+        <div class="flex items-center pl-2">
+            <img src="/images/logo.svg.png" alt="Tiano Logo" class="h-12 w-auto object-contain">
+        </div>
+        
+        <nav class="hidden md:flex space-x-6 font-medium text-sm text-slate-300">
+            <a href="#home" class="nav-link hover:text-green-400 transition">Home</a>
+            <a href="#services" class="nav-link hover:text-green-400 transition">Services</a>
+            <a href="#portfolio" class="nav-link hover:text-green-400 transition">Portfolio</a>
+            <a href="#credentials" class="nav-link hover:text-green-400 transition">Credentials</a>
+            <a href="#about" class="nav-link hover:text-green-400 transition">About</a>
+            <a href="#contact" class="nav-link hover:text-green-400 transition">Contact</a>
+        </nav>
+        
+        <div class="flex items-center">
+            <a href="#contact" class="hidden md:inline-block bg-techBlue text-white px-5 py-3 rounded-full text-sm font-medium hover:bg-sky-700 transition shadow-sm">
+                Get In Touch
+            </a>
+            <button id="menu-open-btn" class="inline-block md:hidden text-white hover:text-slate-300 p-2 focus:outline-none" aria-label="Open Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-950/40 backdrop-blur-sm"></div>
+        
+        <div id="drawer-content" class="absolute top-0 right-0 h-screen w-64 bg-slate-900 border-l border-slate-800 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+                    <span class="font-bold tracking-wide text-sm text-slate-400">NAVIGATION</span>
+                    <button id="menu-close-btn" class="text-slate-400 hover:text-white p-1 focus:outline-none">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                
+                <nav class="flex flex-col space-y-4 mt-8">
+                    <a href="#home" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Home</a>
+                    <a href="#services" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Services</a>
+                    <a href="#portfolio" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Portfolio</a>
+                    <a href="#credentials" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Credentials</a>
+                    <a href="#about" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">About</a>
+                    <a href="#contact" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Contact</a>
+                </nav>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800">
+                <a href="#contact" id="drawer-cta" class="block w-full text-center bg-techBlue text-white py-3 rounded-xl text-sm font-semibold hover:bg-sky-700 transition">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <section id="home" class="relative bg-slate-950 text-white min-h-screen h-screen overflow-hidden flex items-center justify-center">
+        <div class="video-wrapper">
+            <div id="video-agro" class="video-container video-slide active">
+                <iframe class="w-full h-full scale-110 pointer-events-none" src="https://www.youtube.com/embed/p8eRmxosalI?autoplay=1&mute=1&loop=1&playlist=p8eRmxosalI&controls=0&disablekb=1&fs=0&modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+            </div>
+            <div id="video-tech" class="video-container video-slide">
+                <iframe class="w-full h-full scale-110 pointer-events-none" src="https://www.youtube.com/embed/lu72YfaDU1o?autoplay=1&mute=1&loop=1&playlist=lu72YfaDU1o&controls=0&disablekb=1&fs=0&modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div class="absolute inset-0 tech-grid opacity-60 z-[1] pointer-events-none"></div>
+        <div class="absolute inset-0 bg-slate-950/25 z-[2] pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none z-[2]"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center flex flex-col items-center justify-center pt-16">
+            <span class="inline-block bg-white/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold tracking-wider uppercase px-4 py-1.5 rounded-full mb-6 animate-pulse backdrop-blur-sm">
+                Tiano Agro and IT Experts
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 max-w-3xl">
+                Integrating Smart Farming with <span class="text-sky-400">Secure IT</span>
+            </h1>
+            <p class="text-base md:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
+                We drive sustainability, boost agricultural yields, and defend your digital assets with advanced IT infrastructure and cybersecurity frameworks.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#services" class="group flex items-center justify-center bg-gradient-to-r from-green-700 to-green-500 text-white px-8 py-3.5 rounded-full font-medium hover:opacity-95 transition shadow-lg">
+                    <span>Explore Agro Solutions</span>
+                    <i class="fa-solid fa-arrow-right ml-0 max-w-0 opacity-0 transition-all duration-300 ease-out group-hover:ml-2 group-hover:max-w-[20px] group-hover:opacity-100"></i>
+                </a>
+                <a href="#credentials" class="bg-white/10 text-white border border-white/20 px-8 py-3.5 rounded-full font-medium hover:bg-white/20 transition backdrop-blur-sm">
+                    View Our Certifications
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Dual Industry Expertise</h2>
+                <p class="mt-4 text-slate-600">Tailored practical solutions engineered for both earth and code.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-4 border border-emerald-100">
+                        <svg class="w-7 h-7 text-emerald-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="28" r="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" class="opacity-40" />
+                            <circle cx="24" cy="28" r="6" stroke="currentColor" stroke-width="1.5" fill="none" class="animate-radar" />
+                            <g class="animate-sprout">
+                                <path d="M24 40V22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M24 30C24 30 15 28 14 20C18 20 23 25 24 30Z" fill="currentColor" opacity="0.85"/>
+                                <path d="M24 26C24 26 33 24 34 16C30 16 25 21 24 26Z" fill="currentColor"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Modern Agriculture</h3>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">We empower farmers and agribusinesses with sustainable, high-yield modern farming practices and expert consulting to ensure long-term food security and growth.</p>
+                    <ul class="space-y-2 text-xs text-slate-600 mb-2">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Modern Farming Implementations</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Agricultural Yield Consulting</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-500 mr-2"></i> Sustainable Resource Management</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4 border border-sky-100">
+                        <svg class="w-7 h-7 text-sky-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 14H42M6 34H42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="animate-binary opacity-30" />
+                            <path d="M24 8C29.5 8 34 10.5 34 10.5V23C34 31.5 24 38 24 38C24 38 14 31.5 14 23V10.5C14 10.5 18.5 8 24 8Z" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" class="animate-shield" />
+                            <path d="M19 22.5L22.5 26L29 19.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">IT & Cybersecurity</h3>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">We deliver robust IT infrastructure, cloud setups, and advanced cybersecurity frameworks to safeguard business assets and accelerate operational efficiency.</p>
+                    <ul class="space-y-2 text-xs text-slate-600 mb-2">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i> Managed IT Environments</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i> Advanced Threat Prevention & Cybersecurity</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-2"></i> Digital Transformation Strategy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Proven Results</h2>
+                <p class="text-slate-600 mt-2">Real-world examples of our solutions in action.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase font-bold tracking-widest text-emerald-600">Case Study: Agro</span>
+                        <h4 class="text-xl font-bold mt-2 mb-3">Precision Crop Tracking</h4>
+                        <p class="text-sm text-slate-600">Assisted local agricultural enterprises in utilizing automated field sensors, maximizing resource allocation and improving seasonal crops yields by up to 20%.</p>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-400 mt-6 block">Problem <i class="fa-solid fa-arrow-right mx-1 text-[10px]"></i> Solution <i class="fa-solid fa-arrow-right mx-1 text-[10px]"></i> Optimization</span>
+                </div>
+
+                <div class="overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase font-bold tracking-widest text-sky-600">Case Study: Infrastructure</span>
+                        <h4 class="text-xl font-bold mt-2 mb-3">Zero-Trust Network Deployment</h4>
+                        <p class="text-sm text-slate-600">Architected a distributed cloud and security perimeter for a supply chain network, mitigating modern threat vectors and locking down multi-site data assets.</p>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-400 mt-6 block">Problem <i class="fa-solid fa-arrow-right mx-1 text-[10px]"></i> Architecture <i class="fa-solid fa-arrow-right mx-1 text-[10px]"></i> Defense</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="credentials" class="py-24 bg-slate-100 border-t border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight">Verified Credentials & Compliance</h2>
+                <p class="mt-4 text-slate-600">Showcasing corporate registration, domain certifications, and technical excellence.</p>
+            </div>
+
+            <div class="grid sm:cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="bg-slate-200 aspect-[4/3] flex flex-col items-center justify-center text-slate-400 text-sm p-4 font-mono text-center">
+                        <i class="fa-solid fa-file-signature text-3xl mb-2 text-slate-500"></i>
+                        [ CAC Registration Certificate ]
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold tracking-wider text-emerald-600 uppercase">Legal Entity</span>
+                        <h4 class="text-lg font-bold mt-1 text-slate-900">CAC Incorporation</h4>
+                        <p class="text-sm text-slate-600 mt-2">Fully certified corporate registry under the Corporate Affairs Commission, establishing recognized commercial business compliance.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="bg-slate-200 aspect-[4/3] flex flex-col items-center justify-center text-slate-400 text-sm p-4 font-mono text-center">
+                        <i class="fa-solid fa-shield-halved text-3xl mb-2 text-slate-500"></i>
+                        [ Advanced Cybersecurity Credential ]
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold tracking-wider text-sky-600 uppercase">IT Infrastructure</span>
+                        <h4 class="text-lg font-bold mt-1 text-slate-900">Cybersecurity Architecture</h4>
+                        <p class="text-sm text-slate-600 mt-2">Professional engineering validation confirming authority over network defense mechanisms, cloud security, and zero-trust framework deployments.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                    <div class="bg-slate-200 aspect-[4/3] flex flex-col items-center justify-center text-slate-400 text-sm p-4 font-mono text-center">
+                        <i class="fa-solid fa-certificate text-3xl mb-2 text-slate-500"></i>
+                        [ Modern Agronomy Certification ]
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold tracking-wider text-emerald-600 uppercase">Agribusiness</span>
+                        <h4 class="text-lg font-bold mt-1 text-slate-900">Smart Farming Systems</h4>
+                        <p class="text-sm text-slate-600 mt-2">Certified recognition in automated agriculture management pipelines, specialized soil tracking solutions, and high-yield operational setups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="flex justify-center items-center bg-slate-50 border border-slate-200/60 rounded-2xl p-12 relative overflow-hidden h-[350px] lg:h-[450px]">
+                <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                <div class="absolute w-72 h-72 bg-gradient-to-tr from-green-500/10 to-sky-500/10 rounded-full blur-2xl animate-pulse"></div>
+                
+                <div class="relative z-10 flex flex-col items-center">
+                    <svg class="w-32 h-32 text-slate-400/80 drop-shadow-sm" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+                    </svg>
+                    <span class="text-xs font-semibold tracking-widest text-slate-400 uppercase mt-4">Why Choose Tiano?</span>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/50 text-emerald-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                    <i class="fa-solid fa-bullseye text-[10px]"></i> Our Mission
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
+                    Where Agricultural Heritage Meets Next-Gen Security
+                </h2>
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+                    At <span class="font-semibold green-gradient-text">Tiano Agro and IT Experts</span>, we believe that combining deep agricultural insights with enterprise-grade technology creates unprecedented opportunities for food sustainability and structural defense.
+                </p>
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                    Built entirely on a foundation of operational transparency, deep structural engineering, and constant optimization frameworks, we work closely alongside you to secure digital architecture while fundamentally maximizing baseline crop yields.
+                </p>
+                
+                <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900">01</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Integrity First</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900">02</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Pro Architecture</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-slate-900">03</div>
+                        <div class="text-xs font-medium text-slate-500 uppercase tracking-wider mt-1">Pure Innovation</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+                <span class="text-xs font-bold uppercase tracking-widest text-sky-600 block">Get in Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">Let’s Build and Protect Together</h2>
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                    Have questions about automating your deployment loops, optimizing soil matrix mapping pipelines, or configuring enterprise endpoints? Reach out today. Our dual-disciplinary teams are ready to deploy your strategic roadmap.
+                </p>
+                
+                <div class="space-y-4 pt-4 border-t border-slate-200/60">
+                    <div class="flex items-center gap-3 text-sm text-slate-600">
+                        <div class="w-8 h-8 rounded-full bg-slate-200/60 flex items-center justify-center text-slate-700">
+                            <i class="fa-solid fa-envelope text-xs"></i>
+                        </div>
+                        <span>contact@tianoexperts.com</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-600">
+                        <div class="w-8 h-8 rounded-full bg-slate-200/60 flex items-center justify-center text-slate-700">
+                            <i class="fa-solid fa-location-dot text-xs"></i>
+                        </div>
+                        <span>Available for Global Deployments</span>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Prefer Instant Messaging?</p>
+                    <a href="https://wa.me/+2348109493938" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 text-white px-5 py-3 rounded-full text-sm font-semibold hover:bg-emerald-700 transition shadow-md shadow-emerald-600/10 group">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Continue chatting on WhatsApp</span>
+                        <i class="fa-solid fa-arrow-right text-[10px] ml-1 opacity-70 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200/80">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your Name</label>
+                            <input type="text" placeholder="John Doe" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email Address</label>
+                            <input type="email" placeholder="john@example.com" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Subject</label>
+                        <input type="text" placeholder="Project Consultation / General Inquiry" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Message</label>
+                        <textarea rows="5" placeholder="Tell us about your project infrastructure or business goals..." class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-slate-900 text-white font-semibold py-3.5 rounded-xl hover:bg-slate-800 transition shadow-md">
+                        Send Message <i class="fa-solid fa-paper-plane ml-2 text-xs opacity-80"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            <div class="text-center md:text-left">
+                <p class="text-white font-bold text-lg tracking-wide">TIANO</p>
+                <p class="text-xs text-slate-500 mt-1">Bridging Agriculture & Technology.</p>
+            </div>
+            
+            <div class="flex space-x-6 text-xl">
+                <a href="#" class="hover:text-sky-400 transition" aria-label="Twitter / X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="#" class="hover:text-blue-500 transition" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="hover:text-white transition" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+
+            <p class="text-xs">&copy; 2026 Tiano Agro and IT Experts. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Video Carousel Setup
+        const vAgro = document.getElementById('video-agro');
+        const vTech = document.getElementById('video-tech');
+        
+        setInterval(() => {
+            if(vAgro.classList.contains('active')) {
+                vAgro.classList.remove('active');
+                vTech.classList.add('active');
+            } else {
+                vTech.classList.remove('active');
+                vAgro.classList.add('active');
+            }
+        }, 7000);
+
+        // 2. Navigation Active State Observer
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px', 
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+
+        window.addEventListener('scroll', () => {
+    const nav = document.getElementById('floating-nav');
+    
+    // Check if the page is scrolled down more than 50 pixels
+    if (window.scrollY > 50) {
+        // Swap out max-w-4xl for max-w-5xl (increasing the width slightly)
+        nav.classList.remove('max-w-4xl');
+        nav.classList.add('max-w-5xl');
+    } else {
+        // Revert back to original size when back at the top
+        nav.classList.remove('max-w-5xl');
+        nav.classList.add('max-w-4xl');
+    }
+});
+
+// 1. Target Mobile Menu DOM Elements
+const openBtn = document.getElementById('menu-open-btn');
+const closeBtn = document.getElementById('menu-close-btn');
+const drawer = document.getElementById('mobile-drawer');
+const drawerBackdrop = document.getElementById('drawer-backdrop');
+const drawerContent = document.getElementById('drawer-content');
+const mobileLinks = document.querySelectorAll('.mobile-nav-link, #drawer-cta');
+
+// 2. Open Menu Functionality
+function openMobileMenu() {
+    drawer.classList.remove('pointer-events-none', 'opacity-0');
+    drawerContent.classList.remove('translate-x-full');
+}
+
+// 3. Close Menu Functionality
+function closeMobileMenu() {
+    drawer.classList.add('pointer-events-none', 'opacity-0');
+    drawerContent.classList.add('translate-x-full');
+}
+
+// Event Listeners for Toggles
+openBtn.addEventListener('click', openMobileMenu);
+closeBtn.addEventListener('click', closeMobileMenu);
+drawerBackdrop.addEventListener('click', closeMobileMenu);
+
+// Close menu automatically when any single item is selected
+mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
+    </script>
+</body>
+</html>
