@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiano Agro and IT Experts</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/images/logo.svg.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -22,7 +23,9 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+             font-family: 'Inter', sans-serif; 
+            }
         .green-gradient-text {
             background: linear-gradient(to right, #14532d, #4ade80);
             -webkit-background-clip: text;
@@ -34,7 +37,7 @@
                 linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
         }
-        /* Positioning and cropping to hide YouTube UI boundaries entirely */
+
         .video-wrapper {
             position: absolute;
             top: 0;
@@ -62,7 +65,7 @@
             opacity: 0.35;
         }
 
-        /* SVG Custom Animation Keyframes */
+        
         @keyframes sproutGrow {
             0%, 100% { transform: scale(0.92) translateY(1px); }
             50% { transform: scale(1.05) translateY(-1px); }
@@ -80,12 +83,12 @@
             100% { stroke-dashoffset: 0; }
         }
 
-        .animate-sprout { animation: sproutGrow 4s ease-in-out infinite; transform-origin: center bottom; }
+        /* .animate-sprout { animation: sproutGrow 4s ease-in-out infinite; transform-origin: center bottom; }
         .animate-radar { animation: radarPulse 2.5s cubic-bezier(0.24, 0, 0.38, 1) infinite; }
         .animate-shield { animation: shieldGlow 3s ease-in-out infinite; transform-origin: center; }
-        .animate-binary { stroke-dasharray: 8 4; animation: binaryStream 2s linear infinite; }
+        .animate-binary { stroke-dasharray: 8 4; animation: binaryStream 2s linear infinite; } */
 
-        /* Smooth CSS indicator accent */
+        
         .nav-link {
             position: relative;
         }
@@ -106,6 +109,25 @@
         .nav-link.active-nav::after {
             width: 100%;
         }
+        @keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: slideLeft 25s linear infinite;
+}
+
+/* Pause the animation on hover (for laptop/desktop users) */
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
@@ -127,7 +149,7 @@
         
         <div class="flex items-center">
             <a href="#contact" class="hidden md:inline-block bg-techBlue text-white px-5 py-3 rounded-full text-sm font-medium hover:bg-sky-700 transition shadow-sm">
-                Get In Touch
+                Get In Touch <i class="fa-solid fa-paper-plane" style="color:white; "></i>
             </a>
             <button id="menu-open-btn" class="inline-block md:hidden text-white hover:text-slate-300 p-2 focus:outline-none" aria-label="Open Menu">
                 <i class="fa-solid fa-bars text-xl"></i>
@@ -153,13 +175,12 @@
                     <a href="#portfolio" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Portfolio</a>
                     <a href="#credentials" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Credentials</a>
                     <a href="#about" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">About</a>
-                    <a href="#contact" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Contact</a>
                 </nav>
             </div>
 
             <div class="pt-6 border-t border-slate-800">
                 <a href="#contact" id="drawer-cta" class="block w-full text-center bg-techBlue text-white py-3 rounded-xl text-sm font-semibold hover:bg-sky-700 transition">
-                    Get In Touch
+                  Get In Touch  
                 </a>
             </div>
         </div>
@@ -202,7 +223,8 @@
         </div>
     </section>
 
-    <section id="services" class="py-24 bg-slate-100 border-b border-slate-200">
+   
+    <section id="services" class="py-24 bg-slate-70 border-b border-slate-200">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Dual Industry Expertise</h2>
@@ -250,6 +272,41 @@
             </div>
         </div>
     </section>
+ <section id="stats-section" class="py-10 bg-slate-100 border-y border-slate-100">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4 text-center">
+            
+            <div class="flex-1 group p-4 transition-transform duration-300 hover:-translate-y-1">
+                <div class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight flex justify-center items-center">
+                    <span class="stat-counter" data-target="20">0</span>
+                    <span class="text-green-600 ml-1">+</span>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mt-2">Happy Customers</p>
+            </div>
+
+            <div class="hidden md:block h-12 w-px bg-slate-200"></div>
+
+            <div class="flex-1 group p-4 transition-transform duration-300 hover:-translate-y-1">
+                <div class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight flex justify-center items-center">
+                    <span class="stat-counter" data-target="5">0</span>
+                    <span class="text-green-600 ml-1">+</span>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mt-2">Specialized Experts</p>
+            </div>
+
+            <div class="hidden md:block h-12 w-px bg-slate-200"></div>
+
+            <div class="flex-1 group p-4 transition-transform duration-300 hover:-translate-y-1">
+                <div class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight flex justify-center items-center">
+                    <span class="stat-counter" data-target="3">0</span>
+                    <span class="text-green-600 ml-1">+</span>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mt-2">Years of Experience</p>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <section id="portfolio" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
@@ -279,6 +336,238 @@
             </div>
         </div>
     </section>
+
+    <section id="testimonials-marquee" class="py-20 bg-slate-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+        <span class="text-xs font-bold tracking-widest text-green-600 uppercase">Testimonials</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">What Our Clients Say</h2>
+    </div>
+
+    <div class="relative w-full overflow-x-hidden">
+        <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none hidden md:block"></div>
+        <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none hidden md:block"></div>
+
+        <div class="animate-marquee flex gap-6">
+            
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Tiano helped us setup irrigation trackers. Our harvest planning has never been this accurate."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-700 text-sm">CO</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Chinedu Okafor</h4>
+                        <p class="text-xs text-slate-500">Agro-Exporter</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★★</span><span class="text-slate-200 text-lg">★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "The security audit on our network was incredibly detailed. Highly recommend their IT team."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center font-bold text-sky-700 text-sm">FA</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Funmi Adebayo</h4>
+                        <p class="text-xs text-slate-500">FinTech Operations Manager</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★★</span><span class="text-slate-200 text-lg">★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Great response times from their support desk. They secured our endpoints within 48 hours."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 text-sm">UM</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Usman Musa</h4>
+                        <p class="text-xs text-slate-500">IT Administrator</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★</span><span class="text-slate-200 text-lg">★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Good cloud services. Looking forward to more automated features in the next upgrade cycle."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-700 text-sm">AE</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Amara Eze</h4>
+                        <p class="text-xs text-slate-500">Farm Owner</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★</span><span class="text-slate-200 text-lg">★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Solid setup process. The soil analytics dashboard is clean and straightforward."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center font-bold text-sky-700 text-sm">TB</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Tunde Bakare</h4>
+                        <p class="text-xs text-slate-500">Technical Advisor</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★</span><span class="text-slate-200 text-lg">★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Stable implementation framework. Their team provided clear documentation."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 text-sm">NI</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Nneka Ibrahim</h4>
+                        <p class="text-xs text-slate-500">Security Lead</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm aria-hidden='true'">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Tiano helped us setup irrigation trackers. Our harvest planning has never been this accurate."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-700 text-sm">CO</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Chinedu Okafor</h4>
+                        <p class="text-xs text-slate-500">Agro-Exporter</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm aria-hidden='true'">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★★</span><span class="text-slate-200 text-lg">★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "The security audit on our network was incredibly detailed. Highly recommend their IT team."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center font-bold text-sky-700 text-sm">FA</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Funmi Adebayo</h4>
+                        <p class="text-xs text-slate-500">FinTech Operations Manager</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm aria-hidden='true'">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★★</span><span class="text-slate-200 text-lg">★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Great response times from their support desk. They secured our endpoints within 48 hours."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 text-sm">UM</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Usman Musa</h4>
+                        <p class="text-xs text-slate-500">IT Administrator</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm aria-hidden='true'">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★</span><span class="text-slate-200 text-lg">★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Good cloud services. Looking forward to more automated features in the next upgrade cycle."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-700 text-sm">AE</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Amara Eze</h4>
+                        <p class="text-xs text-slate-500">Farm Owner</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm aria-hidden='true'">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★</span><span class="text-slate-200 text-lg">★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Solid setup process. The soil analytics dashboard is clean and straightforward."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center font-bold text-sky-700 text-sm">TB</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Tunde Bakare</h4>
+                        <p class="text-xs text-slate-500">Technical Advisor</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-[300px] md:w-[350px] flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm aria-hidden='true'">
+                <div>
+                    <div class="flex gap-1 text-amber-400 mb-4">
+                        <span class="text-lg">★★★</span><span class="text-slate-200 text-lg">★★</span>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Stable implementation framework. Their team provided clear documentation."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 text-sm">NI</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Nneka Ibrahim</h4>
+                        <p class="text-xs text-slate-500">Security Lead</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <section id="credentials" class="py-24 bg-slate-100 border-t border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6">
@@ -331,17 +620,18 @@
     <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
-            <div class="flex justify-center items-center bg-slate-50 border border-slate-200/60 rounded-2xl p-12 relative overflow-hidden h-[350px] lg:h-[450px]">
-                <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                <div class="absolute w-72 h-72 bg-gradient-to-tr from-green-500/10 to-sky-500/10 rounded-full blur-2xl animate-pulse"></div>
-                
-                <div class="relative z-10 flex flex-col items-center">
-                    <svg class="w-32 h-32 text-slate-400/80 drop-shadow-sm" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
-                    </svg>
-                    <span class="text-xs font-semibold tracking-widest text-slate-400 uppercase mt-4">Why Choose Tiano?</span>
-                </div>
-            </div>
+           <div class="flex justify-center items-center bg-slate-50 border border-slate-200/60 rounded-2xl p-12 relative overflow-hidden h-[350px] lg:h-[450px]">
+    <div class="absolute inset-0 opacity-[0.12] bg-[linear-gradient(to_right,#64748b_1.5px,transparent_1.5px),linear-gradient(to_bottom,#64748b_1.5px,transparent_1.5px)] bg-[size:24px_24px]"></div>
+    
+    <div class="absolute w-72 h-72 bg-gradient-to-tr from-green-500/10 to-sky-500/10 rounded-full blur-2xl animate-pulse"></div>
+    
+    <div class="relative z-10 flex flex-col items-center">
+        <svg class="w-32 h-32 text-slate-400/80 drop-shadow-sm" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"></path>
+        </svg>
+        <span class="text-xs font-bold tracking-widest text-slate-500 uppercase mt-4">Why Choose Tiano?</span>
+    </div>
+</div>
 
             <div class="space-y-6">
                 <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/50 text-emerald-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
@@ -351,11 +641,10 @@
                     Where Agricultural Heritage Meets Next-Gen Security
                 </h2>
                 <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
-                    At <span class="font-semibold green-gradient-text">Tiano Agro and IT Experts</span>, we believe that combining deep agricultural insights with enterprise-grade technology creates unprecedented opportunities for food sustainability and structural defense.
+                    At <span class="font-semibold green-gradient-text">Tiano Agro and IT Experts</span>, we believe that combining smart farming ideas with strong technology creates great opportunities to grow food reliably and protect businesses.
                 </p>
                 <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                    Built entirely on a foundation of operational transparency, deep structural engineering, and constant optimization frameworks, we work closely alongside you to secure digital architecture while fundamentally maximizing baseline crop yields.
-                </p>
+                   Built on a foundation of honest work, solid engineering, and always improving, we work closely with you to keep your digital systems safe while helping you grow as much food as possible.
                 
                 <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
                     <div>
@@ -385,8 +674,7 @@
                 <span class="text-xs font-bold uppercase tracking-widest text-sky-600 block">Get in Touch</span>
                 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">Let’s Build and Protect Together</h2>
                 <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                    Have questions about automating your deployment loops, optimizing soil matrix mapping pipelines, or configuring enterprise endpoints? Reach out today. Our dual-disciplinary teams are ready to deploy your strategic roadmap.
-                </p>
+                    Have questions about automated setups, smart soil mapping, or securing your office systems? Reach out today. Our team of tech and farming experts is ready to help you get started.
                 
                 <div class="space-y-4 pt-4 border-t border-slate-200/60">
                     <div class="flex items-center gap-3 text-sm text-slate-600">
@@ -418,17 +706,74 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
+                            <input type="text" placeholder="your name" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email Address</label>
                             <input type="email" placeholder="john@example.com" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Subject</label>
-                        <input type="text" placeholder="Project Consultation / General Inquiry" class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
-                    </div>
+     <div class="space-y-3">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Subject</label>
+    
+    <div class="relative w-full">
+        <input type="hidden" name="subject" id="subject-hidden-input" value="">
+
+        <button type="button" 
+                id="dropdown-trigger"
+                onclick="toggleDropdown()"
+                class="w-full flex items-center justify-between border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition text-slate-400">
+            <span id="selected-text">Select a subject...</span>
+            <svg class="h-4 w-4 text-slate-500 transition-transform duration-200" id="dropdown-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
+
+        <div id="dropdown-menu" 
+             class="hidden absolute z-50 mt-1 w-full bg-white border border-slate-100 rounded-xl shadow-lg overflow-hidden transition-all duration-150">
+            <ul class="py-1 text-sm text-slate-700">
+                <li>
+                    <button type="button" onclick="selectOption('project-consultation', 'Project Consultation')" 
+                            class="w-full text-left px-4 py-2.5 hover:bg-blue-50 hover:text-blue-700 transition">
+                        Project Consultation
+                    </button>
+                </li>
+                <li>
+                    <button type="button" onclick="selectOption('it-support', 'IT & Security Support')" 
+                            class="w-full text-left px-4 py-2.5 hover:bg-blue-50 hover:text-blue-700 transition">
+                        IT & Security Support
+                    </button>
+                </li>
+                <li>
+                    <button type="button" onclick="selectOption('agro-consulting', 'Agricultural Consulting')" 
+                            class="w-full text-left px-4 py-2.5 hover:bg-blue-50 hover:text-blue-700 transition">
+                        Agricultural Consulting
+                    </button>
+                </li>
+                <li>
+                    <button type="button" onclick="selectOption('general-inquiry', 'General Inquiry')" 
+                            class="w-full text-left px-4 py-2.5 hover:bg-blue-50 hover:text-blue-700 transition">
+                        General Inquiry
+                    </button>
+                </li>
+                <li class="border-t border-slate-100">
+                    <button type="button" onclick="selectOption('other', 'Other (Please specify)')" 
+                            class="w-full text-left px-4 py-2.5 hover:bg-green-50 hover:text-blue-700 transition font-medium">
+                        Other (Please specify)
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="other-subject-container" class="hidden transition-all duration-300">
+        <label class="block text-xs font-semibold text-slate-500 mb-2">Please specify your subject</label>
+        <input type="text" 
+               id="other-subject-input"
+               placeholder="Type your custom subject here..." 
+               class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition">
+    </div>
+</div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Message</label>
                         <textarea rows="5" placeholder="Tell us about your project infrastructure or business goals..." class="w-full border border-slate-200 bg-slate-50/50 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition"></textarea>
@@ -554,5 +899,104 @@ mobileLinks.forEach(link => {
     link.addEventListener('click', closeMobileMenu);
 });
     </script>
+
+
+
+<script>
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdown-menu');
+        const arrow = document.getElementById('dropdown-arrow');
+        
+        menu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+    }
+
+    function selectOption(value, label) {
+        const trigger = document.getElementById('dropdown-trigger');
+        const selectedText = document.getElementById('selected-text');
+        const hiddenInput = document.getElementById('subject-hidden-input');
+        const menu = document.getElementById('dropdown-menu');
+        const arrow = document.getElementById('dropdown-arrow');
+        
+        const otherContainer = document.getElementById('other-subject-container');
+        const otherInput = document.getElementById('other-subject-input');
+
+        // Update the visible trigger and hidden input value
+        selectedText.textContent = label;
+        trigger.classList.remove('text-slate-400');
+        trigger.classList.add('text-slate-700');
+        hiddenInput.value = value;
+
+        // Close dropdown menu
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+
+        // Handle "Other" conditional logic
+        if (value === 'other') {
+            otherContainer.classList.remove('hidden');
+            otherInput.focus();
+            otherInput.required = true;
+        } else {
+            otherContainer.classList.add('hidden');
+            otherInput.value = '';
+            otherInput.required = false;
+        }
+    }
+
+    // Close the dropdown if the user clicks anywhere outside of it
+    window.addEventListener('click', function(e) {
+        const container = document.getElementById('dropdown-trigger');
+        const menu = document.getElementById('dropdown-menu');
+        const arrow = document.getElementById('dropdown-arrow');
+        
+        if (!container.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const statsSection = document.getElementById('stats-section');
+        const counters = document.querySelectorAll('.stat-counter');
+        const speed = 100; // The lower the number, the faster the counter runs
+        let hasRun = false; // Prevents the animation from running multiple times
+
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = parseInt(counter.getAttribute('data-target'), 10);
+                    const count = parseInt(counter.innerText, 10);
+                    const increment = Math.ceil(target / speed);
+
+                    if (count < target) {
+                        counter.innerText = Math.min(count + increment, target);
+                        setTimeout(updateCount, 35);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Create the intersection observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // If the section is visible on screen and hasn't run yet
+                if (entry.isIntersecting && !hasRun) {
+                    startCounters();
+                    hasRun = true; // Mark as done
+                    observer.unobserve(statsSection); // Stop watching the section
+                }
+            });
+        }, {
+            threshold: 0.3 // Triggers when 20% of the section is visible
+        });
+
+        observer.observe(statsSection);
+    });
+</script>
 </body>
 </html>
