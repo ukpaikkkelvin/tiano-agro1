@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiano Agro and IT Experts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="images/logo.svg.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agroDark: '#1e3f20',
+                        agroLight: '#4ade80',
+                        techBlue: '#0284c7',
+                        techDark: '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+  body {
+             font-family: 'Inter', sans-serif; 
+            }
+
+    .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #22c55e;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active-nav {
+            color: #16a34a !important;
+            font-weight: 600;
+        }
+        .nav-link.active-nav::after {
+            width: 100%;
+        }
+        @keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+</style>
+
+
+
+<body class="bg-slate-50 text-slate-800 scroll-smooth">
+
+<div class="fixed top-4 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none">
+    <header id="floating-nav" class="max-w-4xl mx-auto h-16 bg-slate-800/80 backdrop-blur-md border border-slate-700/60 rounded-full shadow-lg pointer-events-auto flex items-center justify-between px-6 text-white transition-all duration-300">
+        <div class="flex items-center pl-2">
+            <img src="images/logo.svg.png" alt="Tiano Logo" class="h-12 w-auto object-contain">
+        </div>
+        
+        <nav class="hidden md:flex space-x-6 font-medium text-sm text-slate-300">
+            <a href="index.html#home" class="nav-link hover:text-green-400 transition">Home</a>
+            <a href="index.html#services" class="nav-link hover:text-green-400 transition">Services</a>
+            <a href="index.html#portfolio" class="nav-link hover:text-green-400 transition">Portfolio</a>
+            <a href="index.html#credentials" class="nav-link hover:text-green-400 transition">Credentials</a>
+            <a href="index.html#about" class="nav-link hover:text-green-400 transition">About</a>
+            <a href="index.html#contact" class="nav-link hover:text-green-400 transition">Contact</a>
+        </nav>
+        
+        <div class="flex items-center">
+            <a href="#contact" class="hidden md:inline-block bg-techBlue text-white px-5 py-3 rounded-full text-sm font-medium hover:bg-sky-700 transition shadow-sm">
+                Get In Touch <i class="fa-solid fa-paper-plane" style="color:white; "></i>
+            </a>
+            <button id="menu-open-btn" class="inline-block md:hidden text-white hover:text-slate-300 p-2 focus:outline-none" aria-label="Open Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-950/40 backdrop-blur-sm"></div>
+        
+        <div id="drawer-content" class="absolute top-0 right-0 h-screen w-64 bg-slate-900 border-l border-slate-800 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+                    <span class="font-bold tracking-wide text-sm text-slate-400">NAVIGATION</span>
+                    <button id="menu-close-btn" class="text-slate-400 hover:text-white p-1 focus:outline-none">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                
+                <nav class="flex flex-col space-y-4 mt-8">
+                    <a href="index.html#home" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Home</a>
+                    <a href="index.html#services" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Services</a>
+                    <a href="index.html#portfolio" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Portfolio</a>
+                    <a href="index.html#credentials" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">Credentials</a>
+                    <a href="index.html#about" class="mobile-nav-link text-base font-medium text-slate-300 hover:text-white transition py-1">About</a>
+                </nav>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800">
+                <a href="index.html#contact" id="drawer-cta" class="block w-full text-center bg-techBlue text-white py-3 rounded-xl text-sm font-semibold hover:bg-sky-700 transition">
+                  Get In Touch  
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section id="products-services" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            
+            <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Featured Products & Services</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-base font-bold text-slate-900">Iron Rods </h3>
+                            <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">Steel</span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="iron-rod-size" class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Select Size Specification:</label>
+                            <select id="iron-rod-size" class="w-full text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-2.5 font-medium focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500">
+                                <option value="8mm">8mm Reinforcement Bar</option>
+                                <option value="10mm">10mm Reinforcement Bar</option>
+                                <option value="12mm">12mm Reinforcement Bar</option>
+                                <option value="16mm">16mm Reinforcement Bar</option>
+                                <option value="20mm">20mm Reinforcement Bar</option>
+                                <option value="25mm">25mm Reinforcement Bar</option>
+                                <option value="30mm">30mm Reinforcement Bar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="orderIronRods()" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 mt-2">
+                        <span>Order via WhatsApp</span>
+                    </button>
+                </div>
+                
+                <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
+                    <img src="images/iron-rods.jpeg" alt="Iron Rods" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-base font-bold text-slate-900">Binding Wire</h3>
+                            <!-- <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">Industrial</span> -->
+                        </div>
+                    </div>
+                    
+                    <button onclick="redirectToWhatsApp('Hello, I would like to place an order for the Flexible Binding Wire.')" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                        <span>Order via WhatsApp</span>
+                    </button>
+                </div>
+                
+                <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
+                    <img src="images/Binding-wires.webp" alt="Binding Wire" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900">Broiler</h3>
+                            <!-- <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-green-50 text-green-700">Agro</span> -->
+                        </div>
+                        
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <span class="text-lg font-black text-slate-900">₦25,000</span>
+                            <span class="text-xs text-slate-400">/ pack</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="redirectToWhatsApp('Hello, I am interested in purchasing Broilers at ₦25,000 per pack.')" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                        <span>Order via WhatsApp</span>
+                    </button>
+                </div>
+                
+                <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
+                    <img src="images/broilers.jpeg" alt="Broilers" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900">catfish</h3>
+                            <!-- <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-green-50 text-green-700">Agro</span> -->
+                        </div>
+                        
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <!-- <span class="text-lg font-black text-slate-900">₦25,000</span> -->
+                            <span class="text-xs text-slate-400">click the button to enquire </span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="redirectToWhatsApp('Hello, I am interested in purchasing catfish.')" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                        <span>Order via WhatsApp</span>
+                    </button>
+                </div>
+                
+                <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
+                    <img src="images/catfish.jfif" alt="Broilers" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+            
+            <div class="md:col-span-1">
+                <h3 class="text-white text-lg font-bold mb-3">Tiano Agro</h3>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Delivering top-quality building materials, smart farming solutions, and cybersecurity services tailored to your needs.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-3">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="index.html#about" class="hover:text-white transition">About Us</a></li>
+                    <li><a href="index.html#credentials" class="hover:text-white transition">Credentials</a></li>
+                    <li><a href="index.html#contact" class="hover:text-white transition">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-3">produts</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><span class="hover:text-white transition">Industrial Steel & Rods</span></li>
+                    <li><span class="hover:text-white transition">Binding Wire</span></li>
+                    <li><span class="hover:text-white transition">Commercial Poultry</span></li>
+                    <li><span class="hover:text-white transition">Agro & Cyber Security services</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-3">Get in Touch</h4>
+                <p class="text-xs text-slate-400 leading-relaxed mb-2">
+                    Have questions or need a custom quote? Reach out to our team today.
+                </p>
+                <a href="index.html#contact" class="inline-block text-xs font-bold text-green-400 hover:text-green-300 transition">
+                    Contact Us &rarr;
+                </a>
+            </div>
+
+        </div>
+
+        <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Tiano Agro. All rights reserved.</p>
+            <div class="flex gap-4 mt-3 sm:mt-0">
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    
+    const WHATSAPP_NUMBER = "2348109493938"; 
+
+    function redirectToWhatsApp(messageText) {
+        const encodedMessage = encodeURIComponent(messageText);
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+    }
+
+    function orderIronRods() {
+        const sizeDropdown = document.getElementById('iron-rod-size');
+        const selectedSize = sizeDropdown.value;
+        const customMessage = `Hello, from your website I would like to make an inquiry and place an order for Iron Rods in size: ${selectedSize}.`;
+        redirectToWhatsApp(customMessage);
+    }
+
+
+    // 1. Target Mobile Menu DOM Elements
+const openBtn = document.getElementById('menu-open-btn');
+const closeBtn = document.getElementById('menu-close-btn');
+const drawer = document.getElementById('mobile-drawer');
+const drawerBackdrop = document.getElementById('drawer-backdrop');
+const drawerContent = document.getElementById('drawer-content');
+const mobileLinks = document.querySelectorAll('.mobile-nav-link, #drawer-cta');
+
+// 2. Open Menu Functionality
+function openMobileMenu() {
+    drawer.classList.remove('pointer-events-none', 'opacity-0');
+    drawerContent.classList.remove('translate-x-full');
+}
+
+// 3. Close Menu Functionality
+function closeMobileMenu() {
+    drawer.classList.add('pointer-events-none', 'opacity-0');
+    drawerContent.classList.add('translate-x-full');
+}
+
+// Event Listeners for Toggles
+openBtn.addEventListener('click', openMobileMenu);
+closeBtn.addEventListener('click', closeMobileMenu);
+drawerBackdrop.addEventListener('click', closeMobileMenu);
+
+// Close menu automatically when any single item is selected
+mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
+
+
+function toggleFaq(button) {
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+
+        // Toggle visibility of the answer
+        answer.classList.toggle('hidden');
+
+        // Rotate arrow icon
+        icon.classList.toggle('rotate-180');
+    } 
+    
+</script>
