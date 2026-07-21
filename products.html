@@ -24,43 +24,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-  body {
-             font-family: 'Inter', sans-serif; 
-            }
+    body {
+        font-family: 'Inter', sans-serif; 
+    }
 
     .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #22c55e;
-            transition: width 0.3s ease;
-        }
-        .nav-link.active-nav {
-            color: #16a34a !important;
-            font-weight: 600;
-        }
-        .nav-link.active-nav::after {
-            width: 100%;
-        }
-        @keyframes slideLeft {
-    0% {
-        transform: translateX(0);
+        position: relative;
     }
-    100% {
-        transform: translateX(-50%);
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #22c55e;
+        transition: width 0.3s ease;
     }
-}
-
+    .nav-link.active-nav {
+        color: #16a34a !important;
+        font-weight: 600;
+    }
+    .nav-link.active-nav::after {
+        width: 100%;
+    }
+    @keyframes slideLeft {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
 </style>
-
-
+</head>
 
 <body class="bg-slate-50 text-slate-800 scroll-smooth">
 
@@ -124,17 +121,16 @@
     <div class="max-w-7xl mx-auto px-6">
         
         <div class="text-center max-w-2xl mx-auto mb-12">
-            
             <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Featured Products & Services</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-base font-bold text-slate-900">Iron Rods </h3>
+                            <h3 class="text-base font-bold text-slate-900">Iron Rods</h3>
                             <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">Steel</span>
                         </div>
                         
@@ -153,12 +149,13 @@
                     </div>
 
                     <button onclick="orderIronRods()" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 mt-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order via WhatsApp</span>
                     </button>
                 </div>
                 
                 <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
-                    <img src="images/iron-rods.jpeg" alt="Iron Rods" class="w-full h-full object-cover">
+                    <img src="images/iron-rods.jpg" alt="Iron Rods" class="w-full h-full object-cover">
                 </div>
             </div>
 
@@ -167,11 +164,12 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <h3 class="text-base font-bold text-slate-900">Binding Wire</h3>
-                            <!-- <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">Industrial</span> -->
+                            <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">Steel</span>
                         </div>
                     </div>
                     
                     <button onclick="redirectToWhatsApp('Hello, I would like to place an order for the Flexible Binding Wire.')" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order via WhatsApp</span>
                     </button>
                 </div>
@@ -186,16 +184,22 @@
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <h3 class="text-base font-bold text-slate-900">Broiler</h3>
-                            <!-- <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-green-50 text-green-700">Agro</span> -->
+                            <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-green-50 text-green-700">Agro</span>
                         </div>
                         
-                        <div class="flex items-baseline gap-1 mb-4">
+                        <div class="flex items-baseline gap-1 mb-3">
                             <span class="text-lg font-black text-slate-900">₦25,000</span>
                             <span class="text-xs text-slate-400">/ pack</span>
                         </div>
+
+                        <div class="mb-4">
+                            <label for="broiler-quantity" class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Number of Packs:</label>
+                            <input type="number" id="broiler-quantity" min="1" value="1" class="w-full text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-2.5 font-medium focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500">
+                        </div>
                     </div>
                     
-                    <button onclick="redirectToWhatsApp('Hello, I am interested in purchasing Broilers at ₦25,000 per pack.')" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                    <button onclick="orderBroilers()" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order via WhatsApp</span>
                     </button>
                 </div>
@@ -204,27 +208,89 @@
                     <img src="images/broilers.jpeg" alt="Broilers" class="w-full h-full object-cover">
                 </div>
             </div>
+
             <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-base font-bold text-slate-900">catfish</h3>
-                            <!-- <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-green-50 text-green-700">Agro</span> -->
+                            <h3 class="text-base font-bold text-slate-900">Catfish</h3>
+                            <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">Agro</span>
                         </div>
-                        
-                        <div class="flex items-baseline gap-1 mb-4">
-                            <!-- <span class="text-lg font-black text-slate-900">₦25,000</span> -->
-                            <span class="text-xs text-slate-400">click the button to enquire </span>
+
+                        <div class="mb-4">
+                            <label for="catfish-option" class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Select Option:</label>
+                            <select id="catfish-option" class="w-full text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-2.5 font-medium focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="Fresh Catfish (₦3,300 / kg)">Fresh Catfish — ₦3,300 / kg</option>
+                                <option value="Fried Catfish">Fried Catfish</option>
+                            </select>
                         </div>
+
+                        <ul class="text-xs text-slate-600 space-y-1.5 mb-4">
+                            <li class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-water text-blue-500 text-[10px]"></i> Fresh from the pond
+                            </li>
+                            <li class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-store text-blue-500 text-[10px]"></i> Wholesale & Retail
+                            </li>
+                            <li class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-truck-fast text-blue-500 text-[10px]"></i> Fast Delivery
+                            </li>
+                        </ul>
                     </div>
                     
-                    <button onclick="redirectToWhatsApp('Hello, I am interested in purchasing catfish.')" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                    <button onclick="orderCatfish()" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 mt-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
                         <span>Order via WhatsApp</span>
                     </button>
                 </div>
                 
                 <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
-                    <img src="images/catfish.jfif" alt="Broilers" class="w-full h-full object-cover">
+                    <img src="images/catfish.jpg" alt="Catfish" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-base font-bold text-slate-900">Fresh Eggs</h3>
+                            <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full bg-amber-50 text-amber-700">Fresh Produce</span>
+                        </div>
+
+                      
+
+                        <div class="grid grid-cols-3 gap-2 mb-4">
+                            <div class="col-span-2">
+                                <label for="egg-size" class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Option:</label>
+                                <select id="egg-size" class="w-full text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-2.5 font-medium focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500">
+                                    <option value="Full Crate (₦6,500)">Full Crate (₦6,500)</option>
+                                    <option value="Half Crate (₦3,250)">Half Crate (₦3,250)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="egg-quantity" class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Qty:</label>
+                                <input type="number" id="egg-quantity" min="1" value="1" class="w-full text-xs bg-slate-50 border border-slate-200 text-slate-700 rounded-lg p-2.5 font-medium focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 text-center">
+                            </div>
+                        </div>
+
+                        <ul class="text-xs text-slate-600 space-y-1 mb-4">
+                            <li class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check text-green-600 text-[10px]"></i> Wholesale & Retail
+                            </li>
+                            <li class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-truck-fast text-green-600 text-[10px]"></i> Fast Delivery
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="orderEggs()" class="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 mt-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order via WhatsApp</span>
+                    </button>
+                </div>
+
+                <div class="bg-slate-100 h-48 border-t border-slate-100 overflow-hidden order-first md:order-last">
+                    <img src="images/eggs.jpg" alt="Fresh Eggs" class="w-full h-full object-cover">
                 </div>
             </div>
 
@@ -239,9 +305,17 @@
             
             <div class="md:col-span-1">
                 <h3 class="text-white text-lg font-bold mb-3">Tiano Agro</h3>
-                <p class="text-xs leading-relaxed text-slate-400">
+                <p class="text-xs leading-relaxed text-slate-400 mb-4">
                     Delivering top-quality building materials, smart farming solutions, and cybersecurity services tailored to your needs.
                 </p>
+                <div class="flex items-center gap-3">
+                    <a href="https://www.linkedin.com/in/toheeb-adewale-6b2306122?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-techBlue transition" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in text-xs"></i>
+                    </a>
+                    <a href="https://www.instagram.com/iron_rod_nd_building_materials?utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-pink-600 transition" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram text-xs"></i>
+                    </a>
+                </div>
             </div>
 
             <div>
@@ -254,11 +328,11 @@
             </div>
 
             <div>
-                <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-3">produts</h4>
+                <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-3">Products</h4>
                 <ul class="space-y-2 text-xs">
                     <li><span class="hover:text-white transition">Industrial Steel & Rods</span></li>
                     <li><span class="hover:text-white transition">Binding Wire</span></li>
-                    <li><span class="hover:text-white transition">Commercial Poultry</span></li>
+                    <li><span class="hover:text-white transition">Commercial Poultry & Eggs</span></li>
                     <li><span class="hover:text-white transition">Agro & Cyber Security services</span></li>
                 </ul>
             </div>
@@ -277,16 +351,12 @@
 
         <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
             <p>&copy; <script>document.write(new Date().getFullYear())</script> Tiano Agro. All rights reserved.</p>
-            <div class="flex gap-4 mt-3 sm:mt-0">
-                
-            </div>
+            <div class="flex gap-4 mt-3 sm:mt-0"></div>
         </div>
     </div>
 </footer>
 
-
 <script>
-    
     const WHATSAPP_NUMBER = "2348109493938"; 
 
     function redirectToWhatsApp(messageText) {
@@ -302,47 +372,65 @@
         redirectToWhatsApp(customMessage);
     }
 
+    function orderBroilers() {
+        const quantityInput = document.getElementById('broiler-quantity');
+        const quantity = quantityInput.value || 1;
+        const customMessage = `Hello, from your website I am interested in purchasing ${quantity} pack(s) of Broilers at ₦25,000 per pack.`;
+        redirectToWhatsApp(customMessage);
+    }
 
-    // 1. Target Mobile Menu DOM Elements
-const openBtn = document.getElementById('menu-open-btn');
-const closeBtn = document.getElementById('menu-close-btn');
-const drawer = document.getElementById('mobile-drawer');
-const drawerBackdrop = document.getElementById('drawer-backdrop');
-const drawerContent = document.getElementById('drawer-content');
-const mobileLinks = document.querySelectorAll('.mobile-nav-link, #drawer-cta');
+    function orderCatfish() {
+        const catfishSelect = document.getElementById('catfish-option');
+        const selectedOption = catfishSelect.value;
+        const customMessage = `Hello, from your website I would like to place an order for Catfish: ${selectedOption}.`;
+        redirectToWhatsApp(customMessage);
+    }
 
-// 2. Open Menu Functionality
-function openMobileMenu() {
-    drawer.classList.remove('pointer-events-none', 'opacity-0');
-    drawerContent.classList.remove('translate-x-full');
-}
+    function orderEggs() {
+        const eggSizeSelect = document.getElementById('egg-size');
+        const eggQuantityInput = document.getElementById('egg-quantity');
+        
+        const sizeOption = eggSizeSelect.value;
+        const quantity = eggQuantityInput.value || 1;
+        
+        const customMessage = `Hello, from your website I would like to place an order for ${quantity} x ${sizeOption} Fresh Eggs.`;
+        redirectToWhatsApp(customMessage);
+    }
 
-// 3. Close Menu Functionality
-function closeMobileMenu() {
-    drawer.classList.add('pointer-events-none', 'opacity-0');
-    drawerContent.classList.add('translate-x-full');
-}
+    // Mobile Menu Handlers
+    const openBtn = document.getElementById('menu-open-btn');
+    const closeBtn = document.getElementById('menu-close-btn');
+    const drawer = document.getElementById('mobile-drawer');
+    const drawerBackdrop = document.getElementById('drawer-backdrop');
+    const drawerContent = document.getElementById('drawer-content');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link, #drawer-cta');
 
-// Event Listeners for Toggles
-openBtn.addEventListener('click', openMobileMenu);
-closeBtn.addEventListener('click', closeMobileMenu);
-drawerBackdrop.addEventListener('click', closeMobileMenu);
+    function openMobileMenu() {
+        drawer.classList.remove('pointer-events-none', 'opacity-0');
+        drawerContent.classList.remove('translate-x-full');
+    }
 
-// Close menu automatically when any single item is selected
-mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
+    function closeMobileMenu() {
+        drawer.classList.add('pointer-events-none', 'opacity-0');
+        drawerContent.classList.add('translate-x-full');
+    }
 
+    openBtn.addEventListener('click', openMobileMenu);
+    closeBtn.addEventListener('click', closeMobileMenu);
+    drawerBackdrop.addEventListener('click', closeMobileMenu);
 
-function toggleFaq(button) {
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
+    function toggleFaq(button) {
         const answer = button.nextElementSibling;
         const icon = button.querySelector('svg');
 
-        // Toggle visibility of the answer
         answer.classList.toggle('hidden');
-
-        // Rotate arrow icon
         icon.classList.toggle('rotate-180');
     } 
-    
 </script>
+
+</body>
+</html>
